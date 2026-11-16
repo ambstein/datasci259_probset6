@@ -88,8 +88,6 @@ ds <- stations %>%
 
 glimpse(ds)
 
-# this isn't working and i'm not sure why.....
-
 # QUESTION 3
 #> Make a factor called "city" based on the station variable
 #> (station should be the level and city should be the label)
@@ -97,8 +95,17 @@ glimpse(ds)
 #> and save the results to a new tibble
 #> Write a logical statement that would trigger a warning if any city did not have 365 days
 
+city <- factor(stations)
+freq <- freq_table(ds$station)
 
+if(any(freq$n != 365)) {
+  print("A city does NOT have 365 days")
+  print(freq)
+} else {
+  print("All cities have 365 days")
+}
 
+# yay it worked!!!
 
 # QUESTION 4
 #> In question 3, all of the cities do have 365 days of data, so how would you know

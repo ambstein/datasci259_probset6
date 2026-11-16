@@ -1,6 +1,7 @@
 library(tidyverse)
 library(DataExplorer)
 library(rstatix)
+library(here)
 
 # Sarah and Dylan as collaborators <33
 
@@ -35,7 +36,7 @@ read_weather <- function(s) {
     hou <- hou %>%
       mutate(station = "Houston", .before = 1)
     return(hou)
-  } else if (s == KIND) {
+  } else if (s == "KIND") {
     ind <- read_csv("us-weather-history/KIND.csv")
     ind <- ind %>%
       mutate(station = "Indianapolis", .before = 1)
@@ -50,22 +51,22 @@ read_weather <- function(s) {
     chi <- chi %>%
       mutate(station = "Chicago", .before = 1)
     return(chi)
-  } else if (s == KNYC) {
+  } else if (s == "KNYC") {
     nyc <- read_csv("us-weather-history/KNYC.csv")
     nyc <- nyc %>%
       mutate(station = "New York City", .before = 1)
     return(nyc)
-  } else if (s == KPHL) {
+  } else if (s == "KPHL") {
     phi <- read_csv("us-weather-history/KPHL.csv")
     phi <- phi %>%
       mutate(station = "Philadelphia", .before = 1)
     return(phi)
-  } else if (s == KPHX) {
+  } else if (s == "KPHX") {
     phx <- read_csv("us-weather-history/KPHX.csv")
     phx <- phx %>%
       mutate(station = "Phoenix", .before = 1)
     return(phx)
-  } else if (s == KSEA) {
+  } else if (s == "KSEA") {
     sea <- read_csv("us-weather-history/KSEA.csv")
     sea <- sea %>%
       mutate(station = "Seattle", .before = 1)
@@ -81,8 +82,13 @@ read_weather("KCLT")
 #> you will need to do so in the code with bind_rows()
 #> Save the resulting dataset to "ds"
 
+ds <- stations %>%
+  map(read_weather) %>%
+  bind_rows()
 
+glimpse(ds)
 
+# this isn't working and i'm not sure why.....
 
 # QUESTION 3
 #> Make a factor called "city" based on the station variable

@@ -139,7 +139,17 @@ glimpse(ds2)
 
 ?`lubridate-package`
 
+date2 <- function(date) {
+  ds2 %>%
+    mutate(month = as.factor(month(ds2$date, 
+                                   label = T, 
+                                   abbr = T)), .before = "date")
+}
 
+date2(ds2)
+
+ds2 <- date2(ds2)
+glimpse(ds2)
 
 # QUESTION 7
 #> Use rstatix to check if there are any outliers for actual_mean_temp.

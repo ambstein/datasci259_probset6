@@ -2,6 +2,8 @@ library(tidyverse)
 library(DataExplorer)
 library(rstatix)
 library(here)
+library(readr)
+library(lubridate)
 
 # Sarah and Dylan as collaborators <33
 
@@ -122,13 +124,20 @@ if(any(freq2$n2 != 365)) {
   print("All cities have 365 days")
 }
 
+# QUESTION 5
 #> At this point, your data should look like the "compiled_data.csv" file
 #> in data-clean. If it isn't, read in that file to use for the remaining
 #> questions so that you have the right data to work with.
 
-# QUESTION 5
+ds2 <- read_csv("data-clean/compiled_data.csv")
+
+glimpse(ds2)
+
+# QUESTION 6
 #> Find a function that lets you pull out the month from the date 
 #> and make "month" a factor as a new variable in ds
+
+?`lubridate-package`
 
 
 

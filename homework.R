@@ -2,6 +2,8 @@ library(tidyverse)
 library(DataExplorer)
 library(rstatix)
 
+# Sarah and Dylan as collaborators <33
+
 stations <- c("KCLT", "KCQT", "KHOU", "KIND", "KJAX", "KMDW", "KNYC", "KPHL", "KPHX", "KSEA")
 cities <- c("Charlotte", "Los Angeles", "Houston", "Indianapolis", "Jacksonville", 
             "Chicago", "New York City", "Philadelphia", "Phoenix", "Seattle")
@@ -15,6 +17,62 @@ cities <- c("Charlotte", "Los Angeles", "Houston", "Indianapolis", "Jacksonville
 #> Call the function "read_weather" 
 #> Check by reading/glimpsing a single station's file
 
+here()
+
+read_weather <- function(s) {
+  if (s == "KCLT") {
+    charlotte <- read_csv("us-weather-history/KCLT.csv")
+    charlotte <- charlotte %>%
+      mutate(station = "Charlotte", .before = 1)
+    return(charlotte)
+  } else if (s == "KCQT") {
+    la <- read_csv("us-weather-history/KCQT.csv")
+    la <- la %>%
+      mutate(station = "Los Angeles", .before = 1)
+    return(la)
+  } else if (s == "KHOU") {
+    hou <- read_csv("us-weather-history/KHOU.csv")
+    hou <- hou %>%
+      mutate(station = "Houston", .before = 1)
+    return(hou)
+  } else if (s == KIND) {
+    ind <- read_csv("us-weather-history/KIND.csv")
+    ind <- ind %>%
+      mutate(station = "Indianapolis", .before = 1)
+    return(ind)
+  } else if (s == "KJAX") {
+    jax <- read_csv("us-weather-history/KJAX.csv")
+    jax <- jax %>%
+      mutate(station = "Jacksonville", .before = 1)
+    return(jax)
+  } else if (s == "KMDW") {
+    chi <- read_csv("us-weather-history/KMDW.csv")
+    chi <- chi %>%
+      mutate(station = "Chicago", .before = 1)
+    return(chi)
+  } else if (s == KNYC) {
+    nyc <- read_csv("us-weather-history/KNYC.csv")
+    nyc <- nyc %>%
+      mutate(station = "New York City", .before = 1)
+    return(nyc)
+  } else if (s == KPHL) {
+    phi <- read_csv("us-weather-history/KPHL.csv")
+    phi <- phi %>%
+      mutate(station = "Philadelphia", .before = 1)
+    return(phi)
+  } else if (s == KPHX) {
+    phx <- read_csv("us-weather-history/KPHX.csv")
+    phx <- phx %>%
+      mutate(station = "Phoenix", .before = 1)
+    return(phx)
+  } else if (s == KSEA) {
+    sea <- read_csv("us-weather-history/KSEA.csv")
+    sea <- sea %>%
+      mutate(station = "Seattle", .before = 1)
+    return(sea)
+  }
+}
+read_weather("KCLT")
 
 
 # QUESTION 2

@@ -5,6 +5,8 @@ library(here)
 library(readr)
 library(lubridate)
 
+# install.packages("rstatix-programming") this package is not available for my version of R?
+
 # Sarah and Dylan as collaborators <33
 
 stations <- c("KCLT", "KCQT", "KHOU", "KIND", "KJAX", "KMDW", "KNYC", "KPHL", "KPHX", "KSEA")
@@ -158,6 +160,16 @@ glimpse(ds2)
 #> get_summary_stats() to get the mean and SE for actual_mean_temp
 #> by month.
 
+outliers <- identify_outliers(ds2, actual_mean_temp)
+
+?anti_join
+
+temp_stats <- ds2 %>%
+  anti_join(outliers, by = join_by(actual_mean_temp)) %>%
+  group_by(month) %>%
+  get_summary_stats(actual_mean_temp)
+
+glimpse(temp_stats)
 
 # QUESTION 8
 #> Use the Data Explorer package to plot boxplots of all of the numeric variables in the dataset
